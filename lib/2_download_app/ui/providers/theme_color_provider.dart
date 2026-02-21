@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:w4_practice/2_download_app/ui/theme/theme.dart';
 
 enum ThemeColor {
   blue(color: Color.fromARGB(255, 34, 118, 229)),
@@ -11,4 +12,17 @@ enum ThemeColor {
   Color get backgroundColor => color.withAlpha(100);
 }
 
-ThemeColor currentThemeColor = ThemeColor.blue;
+class ThemeColorProvider extends ChangeNotifier {
+  ThemeColor _currentThemeColor = ThemeColor.blue;
+
+  ThemeColor get currentThemeColor => _currentThemeColor;
+
+    BoxBorder? getBorder(ThemeColor themeColor) {
+      return themeColor == _currentThemeColor ?
+      Border.all(color: AppColors.neutral, width: 6) : null;
+    }
+  void onTap(ThemeColor themColor) {
+    _currentThemeColor = themColor;
+    notifyListeners();
+  }
+}
