@@ -2,25 +2,36 @@ import 'package:flutter/material.dart';
 
 class Ressource {
   final String name;
-  final int size;   // in MB
+  final int size; // in MB
 
-  Ressource({required this.name, required this.size}); 
+  Ressource({required this.name, required this.size});
 }
 
 enum DownloadStatus { notDownloaded, downloading, downloaded }
 
 class DownloadController extends ChangeNotifier {
-  
   DownloadController(this.ressource);
 
   // DATA
   Ressource ressource;
   DownloadStatus _status = DownloadStatus.notDownloaded;
-  double _progress = 0.0;         // 0.0 → 1.0
+  double _progress = 0.0; // 0.0 → 1.0
 
   // GETTERS
   DownloadStatus get status => _status;
   double get progress => _progress;
+
+  // Get status Icon
+  IconData? getIcon(DownloadStatus status) {
+    if (status == DownloadStatus.notDownloaded) {
+      return Icons.download;
+    } else if (status == DownloadStatus.downloading) {
+      return Icons.downloading;
+    } else if (status == DownloadStatus.downloaded) {
+      return Icons.file_download;
+    }
+    return null;
+  }
 
   // ACTIONS
   void startDownload() async {
@@ -34,5 +45,3 @@ class DownloadController extends ChangeNotifier {
     // 3 – set status to downloaded
   }
 }
-
-
