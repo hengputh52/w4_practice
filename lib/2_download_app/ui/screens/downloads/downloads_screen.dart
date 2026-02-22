@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class DownloadsScreen extends StatelessWidget {
   // Create the list of fake ressources
   final List<Ressource> ressources = [
-    Ressource(name: "image1.png", size: 120),
+    Ressource(name: "image1.png", size: 6767),
     Ressource(name: "image1.png", size: 500),
     Ressource(name: "image3.png", size: 12000),
   ];
@@ -47,7 +47,9 @@ class DownloadsScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: controllers.length,
               itemBuilder: (context, index) {
-                return DownloadTile(controller: controllers[index]);
+                return ChangeNotifierProvider(
+                  create: (context) => DownloadController(ressources[index]),
+                  child: DownloadTile(controller: controllers[index]));
               },
             ),
           ),

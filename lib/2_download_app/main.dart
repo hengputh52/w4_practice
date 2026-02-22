@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:w4_practice/2_download_app/ui/screens/downloads/widgets/download_controler.dart';
 import 'ui/providers/theme_color_provider.dart';
 import 'ui/screens/settings/settings_screen.dart';
 import 'ui/screens/downloads/downloads_screen.dart';
@@ -6,11 +7,13 @@ import 'ui/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+    
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeColorProvider(),
-      child: const MyApp()
-      )
+      child: const MyApp(),
+    ),
+   
   );
 }
 
